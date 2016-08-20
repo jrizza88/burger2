@@ -1,0 +1,56 @@
+
+
+html {
+  height: 100%;
+/*  background: url("trampolineBurger.jpg") no-repeat center center;*/
+  background-size: cover;
+
+}
+
+body {
+  /*background-color: #24a4ec;*/
+  background-color: #0096DD;
+}
+
+h2{
+  color: white;
+}
+
+h3{
+  font-family: 'Bangers', cursive;
+}
+
+.mycontent-left {
+  border-right: 1px solid #333;
+  /*dashed #333*/
+  border-color: white;
+}
+
+#burgerUpdate {
+  margin-bottom: 10px;
+}
+
+h4{
+  font-size: 16px;
+  padding-bottom: 4px;
+}
+
+.menu1{
+  background-color: #fddb44;
+  border-radius: 20px;
+  border-style: solid;
+  padding: 10px;
+  border-width: 1px;
+}
+
+.menu2{
+  background-color: #c49634;
+  border-radius: 20px;
+  border-style: solid;
+  padding: 10px;
+  border-width: 1px;
+}
+
+ul{
+list-style-type: none;
+}

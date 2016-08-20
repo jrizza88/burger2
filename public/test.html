@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Munchy Burger!</title>
+  <!--Bootstrap File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/burger_style.css">
+</head>
+<body>
+
+<div class="text-center">
+  <img src="assets/img/yumBurger.jpg" height="200px" width="230px">
+  <h3>Welcome to Munchy Burger!</h3>
+<hr>
+
+
+  <form method="POST" action="/add" class="create-form">
+
+        <div class="form-group">
+          <label for="munch"><h4>Make your own munch!</h4>
+            <textarea id="munch" name="makeBurger" rows="2" cols="40" placeholder="Add to our menu here..."></textarea>
+              <br>
+                <button type="submit" class="btn btn-success">Make Burger!</button>
+        </div>
+
+  </form>
+
+
+  <!-- burgers that are ready are listed here -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <div class="mycontent-left">
+          <h4> Your burgers are ready</h4>
+            <div class="row">
+              {{#each burgers}}
+                <div class="col-sm-6 text-center">
+                    <h4 align="left">{{this.burger_name}}</h4>
+                </div>
+                  <div class="col-sm-3 text-center">
+                    <form method="POST" action="/devour?_method=PUT" class="create-form">
+                          <button type="button" name="burger_id" value={{this.id}} class="btn btn-danger">Devour!</button>
+                    </form>
+                  </div>
+              {{/each}}
+            </div>
+        </div>
+      </div>
+
+  <!-- devoured burgers are here-->
+      <div class="col-md-6 text-center">
+        <div class="mycontent-right">
+            <h4> Burgers devoured!</h4>
+            <div class="row">
+              {{#each burgers}}
+                {{#if this.devoured}}
+                  <div class="col-sm-6 text-center">
+                      <h4 align="left">{{this.burger_name}}</h4>
+                  </div>
+                      <div class="col-sm-3 text-center">
+                        <form method="POST" action="/moreBurgers?_method=PUT">
+                              <button type="button" name="burger_id" value={{this.id}} class="btn btn-danger">Make more!</button>
+                        </form>
+                      </div>
+
+
+
+                  {{/if}}
+              {{/each}}
+            </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+</body>
+</html>

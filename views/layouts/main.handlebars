@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Munchy Burger!</title>
+  <!--Bootstrap File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/burger_style.css">
+  <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+</head>
+<body>
+
+<div class="text-center">
+  <img src="assets/img/yumBurger.jpg" height="200px" width="230px">
+    <h3>Welcome to Munchy Burger!</h3>
+<hr>
+  <div class="form-group">
+  <form method="POST" action="/create" class="button-size">
+            <label for="burg"><div id="make">Make your own munch!</label></div>
+            <br>
+              <textarea id="burg" name="burger_name" rows="2" cols="40" placeholder="Write new burger here..."></textarea>
+                <br>
+                  <button type="submit" class="btn btn-success">Make Burger!</button>
+                  </form>
+          </div>
+
+
+</div>
+
+<div>
+  								{{{body}}}
+</div>
+
+
+</body>
+</html>
