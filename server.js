@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var sequelize = require('sequelize');
 var exphbs = require('express-handlebars');
 
-var SeqBurgers = require('./models').SeqBurgers;
-SeqBurgers.sync();
+var SeqBurger = require('./models').SeqBurger;
+SeqBurger.sync();
 
 //var mysql = require('mysql');
 var app = express();
@@ -38,45 +38,63 @@ app.use(methodOverride('_method'));
 // use public folder for all the files that the user can see
 app.use(express.static(__dirname + '/public'));
 
-
-app.get('/', function(req,res){
-	myConnection.query('SELECT * FROM burgers', function(err, data){
-		if(err) throw error
-			console.log(data);
-			res.render('index', {
-				burgers:data
-		})
-	})
+app.get('/', function(req, res) {
+    SeqBurger.findAll({}).then(function(data) {
+        // console.log(data);
+        res.render('index', {
+            burgers: data  //refers to the burgers in index.handlebars
+        })
+    }).catch(function(err) {
+        if (err) {
+            throw err;
+        }
+    })
 });
 
-app.post('/create', function(req,res){
-	myConnection.query('INSERT INTO burgers SET ?', {
-		burger_name: req.body.burger_name,
-		devoured: false
-	}, function(err, response){
-		if(err) throw err;
-		res.redirect('/')
-	})
-	});
+app.post('/create', function(req, res) {
+    SeqBurger.create({
+        name: req.body.name,
+        devoured: false
+    }).then(function(sq_response) {
+        // console.log(sq_response);
+        res.redirect('/')
+    }).catch(function(err) {
+        throw err;
+    })
 
+});
 
+app.put('/update', function(req, res) {
+    console.log(req.body.id)
 
-app.put('/update', function(req,res){
-	myConnection.query('UPDATE burgers SET ? WHERE ?', [{devoured:true}, {id:req.body.id}], function(err, response){
-		if(err)throw err;
-		res.redirect('/');
-
-	});
+    SeqBurger.findOne({
+        where: {
+            id: req.body.id,
+        }
+    }).then(function updateSeqBurger(sq_burger) {
+        console.log(sq_burger);
+        sq_burger.update({
+            devoured: true
+        }).then(function(whatever) {
+            res.redirect('/');
+        });
+    });
 });
 
 app.delete('/delete', function(req,res){
-	myConnection.query('DELETE FROM burgers WHERE devoured = 1', [{devoured:true}, {id:req.body.id}], function(err, response){
-		if(err)throw err;
-		res.redirect('/');
-
-	});
+    SeqBurger.findOne({
+        where: {
+            id: req.body.id,
+        }
+    }).then(function deleteBurger(del_burger){
+        console.log(del_burger);
+        del_burger.destroy({
+            devoured:true
+        }).then(function(another_arg){
+            res.redirect('/');
+        });
+    });
 });
-
 
 app.listen(PORT, function () {
 	console.log('Listening on port: ' + PORT);

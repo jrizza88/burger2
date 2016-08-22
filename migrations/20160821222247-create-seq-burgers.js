@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      burger_name: {
+      name: {
         type: Sequelize.STRING
       },
       devoured: {

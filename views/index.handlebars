@@ -12,7 +12,7 @@
           <!--  {{burger_name}} -->
                 <div>
                   <!-- <h5>Burger is ready!</h5> -->
-                    {{this.id}}. {{this.burger_name}}
+                    {{this.id}}. {{this.name}}
 
 
                   <form id="burgerUpdate" action="/update?_method=PUT" method="POST">
@@ -44,7 +44,7 @@
   						{{#if this.devoured}}
   						<li>
   							<p id="p2">
-  								{{this.id}}. {{this.burger_name}}
+  								{{this.id}}. {{this.name}}
   									<form id="devouredBurgers" action="/delete?_method=DELETE" method="POST">
   									<div class="input-group">
   										<input type="hidden" class="form-control" name="id" value="{{this.id}}">
