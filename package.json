@@ -23,6 +23,6 @@
     "method-override": "^2.3.6",
     "mysql": "^2.11.1",
     "router": "^1.1.4",
-    "sequelize": "^3.24.1"
+    "sequelize": "^5.21.1"
   }
 }
